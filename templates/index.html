@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Q&A Interface</title>
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        
+      }
+
+      .container {
+        width: 100%;
+        max-width: 900px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        overflow-y: auto;
+        max-height: 95vh;
+      }
+
+      .header {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .question-form {
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .question-form input {
+        width: 100%;
+        padding: 15px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        margin-bottom: 15px;
+        font-size: 18px;
+        outline: none;
+        transition: border-color 0.3s;
+      }
+
+      .question-form input:focus {
+        border-color: #4caf50;
+      }
+
+      .question-form button {
+        padding: 12px 20px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .question-form button:hover {
+        background-color: #45a049;
+      }
+
+      .chat-box {
+        max-height: 65vh;
+        overflow-y: auto;
+        padding-right: 10px;
+        display: flex; 
+        flex-direction: column-reverse; /* Reverse the order of chat messages */
+      }
+
+      .chat-message {
+        margin-bottom: 20px;
+      }
+
+      .chat-message p {
+        padding: 15px;
+        border-radius: 10px;
+        max-width: 75%;
+        margin: 0;
+      }
+
+      .user-message {
+        background-color: #4caf50;
+        color: white;
+        border-radius: 5px;
+        align-self: flex-start;
+      }
+
+      .ai-message {
+        background-color: #e0e0e0;
+        color: black;
+        align-self: flex-end;
+        border-radius: 5px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 20px;
+        font-size: 14px;
+        color: #777;
+      }
+
+      .footer a {
+        text-decoration: none;
+        color: #4caf50;
+      }
+
+      #date {
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <h1>Hi 👋, I'm an AI!</h1>
+        <h2>Ask me anything, and I'll do my best to help.</h2>
+      </header>
+
+      <div class="chat-box">
+        <!-- Loop through the history of questions and answers -->
+        {% for entry in history %}
+        <div class="chat-message ai-message">
+          <p><strong>AI:</strong> {{ entry.answer|safe }}</p>
+        </div>
+        <div class="chat-message user-message">
+          <p><strong>Question:</strong> {{ entry.question }}</p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="question-form">
+        <form action="/" method="post">
+          <input
+            type="text"
+            id="inputValue"
+            name="inputValue"
+            placeholder="Type your question here..."
+            required
+          />
+          <button type="submit">Ask Question</button>
+        </form>
+      </div>
+
+      <!-- <div class="footer">
+         <p>Date: <span id="date"></span></p> 
+      </div> -->
+    </div>
+
+    <script>
+    //   const date = Date.now();
+    //   document.getElementById("date").innerText = new Date(date).toDateString();
+    </script>
+  </body>
+</html>
