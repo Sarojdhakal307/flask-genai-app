@@ -18,8 +18,6 @@ A simple Flask chatbot that uses Google's Generative AI (Gemini) to generate res
      ```
      API_KEY=your_google_gemini_api_key_here
      ```
-      **To get the API key : [How to get the API key](https://www.geeksforgeeks.org/how-to-use-google-gemini-api-key/)**
-
 5. **Run the app**
    ```bash
    python app.py
